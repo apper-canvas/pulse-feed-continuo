@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import Header from "@/components/organisms/Header";
 import PostsFeed from "@/components/organisms/PostsFeed";
 import { usePosts } from "@/hooks/usePosts";
-import { Button } from "@/components/atoms/Button";
+import Button from "@/components/atoms/Button";
 import ApperIcon from "@/components/ApperIcon";
 
 const SearchResults = () => {
