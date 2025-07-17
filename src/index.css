@@ -74,3 +74,25 @@
 .comment-form input {
   @apply bg-white border-gray-300 focus:border-primary focus:ring-primary;
 }
+
+/* Post Image Styles */
+.post-image {
+  @apply w-full rounded-lg border border-gray-200 object-cover transition-transform duration-200 hover:scale-[1.02];
+}
+
+.post-image-container {
+  @apply relative overflow-hidden rounded-lg;
+}
+
+/* Image Upload Styles */
+.image-preview {
+  @apply relative max-w-md rounded-lg border border-gray-200 overflow-hidden;
+}
+
+.image-preview img {
+  @apply w-full h-auto object-cover;
+}
+
+.image-remove-btn {
+  @apply absolute top-2 right-2 bg-black/50 text-white hover:bg-black/70 rounded-full p-1;
+}

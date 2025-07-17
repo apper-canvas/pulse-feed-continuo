@@ -23,7 +23,8 @@ async create(postData) {
       ...postData,
       timestamp: new Date().toISOString(),
       likes: 0,
-      comments: []
+      comments: [],
+      imageUrl: postData.imageUrl || null
     };
     posts.unshift(newPost);
     return { ...newPost };

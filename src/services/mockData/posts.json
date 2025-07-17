@@ -1,78 +1,95 @@
 [
   {
     "Id": 1,
-    "content": "Just finished building an amazing React component library! The developer experience is so smooth now. Can't wait to share it with the team. 🚀",
-    "author": "Alex Chen",
-    "timestamp": "2024-01-20T10:30:00Z",
-    "likes": 24,
+    "content": "Just finished an amazing book on React patterns! The component composition techniques are mind-blowing 🤯 Can't wait to implement these in my next project.",
+    "author": "Sarah Chen",
+    "timestamp": "2024-01-15T10:30:00Z",
+    "likes": 42,
+    "imageUrl": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop",
     "comments": [
       {
         "Id": 1,
-        "content": "This sounds amazing! Would love to see the documentation when it's ready.",
-        "author": "Sarah Johnson",
-        "timestamp": "2024-01-20T11:15:00Z"
+        "content": "Which book was it? I'm always looking for good React resources!",
+        "author": "Mike Johnson",
+        "timestamp": "2024-01-15T11:00:00Z"
       },
       {
         "Id": 2,
-        "content": "Great work Alex! Component libraries are game-changers for team productivity.",
-        "author": "Mike Rodriguez",
-        "timestamp": "2024-01-20T12:00:00Z"
+        "content": "React patterns are definitely a game changer once you understand them properly.",
+        "author": "Lisa Park",
+        "timestamp": "2024-01-15T11:15:00Z"
       }
     ]
   },
   {
     "Id": 2,
-    "content": "Morning coffee and coding session. There's something magical about solving complex problems with clean, elegant code. What's your favorite way to start the day?",
-    "author": "Sarah Johnson",
-    "timestamp": "2024-01-20T08:15:00Z",
-    "likes": 18,
+    "content": "Beautiful sunset from my office window today. Sometimes the best inspiration comes from taking a moment to appreciate the simple things in life 🌅",
+    "author": "David Kim",
+    "timestamp": "2024-01-15T09:45:00Z",
+    "likes": 28,
+    "imageUrl": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop",
     "comments": [
       {
         "Id": 3,
-        "content": "I love starting with a good cup of tea and reviewing yesterday's code. Fresh perspective always helps!",
-        "author": "Emma Thompson",
-        "timestamp": "2024-01-20T09:30:00Z"
+        "content": "Gorgeous! Where is your office located?",
+        "author": "Emma Wilson",
+        "timestamp": "2024-01-15T10:00:00Z"
       }
     ]
   },
   {
     "Id": 3,
-    "content": "Pro tip: Always write your tests first. It might feel slower initially, but it saves so much debugging time later. TDD for the win! 💪",
-    "author": "Mike Rodriguez",
-    "timestamp": "2024-01-19T16:45:00Z",
-    "likes": 31,
+    "content": "Hot take: TypeScript should be the default for all new React projects. The developer experience improvements are worth the initial learning curve.",
+    "author": "Alex Rodriguez",
+    "timestamp": "2024-01-15T08:20:00Z",
+    "likes": 15,
+    "imageUrl": null,
     "comments": []
   },
-  {
+{
     "Id": 4,
-    "content": "Just discovered this incredible CSS trick for responsive design. Mind = blown! 🤯 The web development community never ceases to amaze me.",
-    "author": "Emma Thompson",
-    "timestamp": "2024-01-19T14:20:00Z",
-    "likes": 12,
-    "comments": []
+    "content": "Finally deployed my side project to production! 🚀 It's a simple todo app, but seeing it live gives me so much satisfaction. Next step: adding user authentication.",
+    "author": "Jennifer Lee",
+    "timestamp": "2024-01-15T07:30:00Z",
+    "likes": 33,
+    "imageUrl": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
+    "comments": [
+      {
+        "Id": 4,
+        "content": "Congratulations! The feeling of deploying your first app is unbeatable.",
+        "author": "Chris Taylor",
+        "timestamp": "2024-01-15T08:00:00Z"
+      },
+      {
+        "Id": 5,
+        "content": "Would love to check it out! Do you have a demo link?",
+        "author": "Amanda Foster",
+        "timestamp": "2024-01-15T08:30:00Z"
+      }
+    ]
   },
   {
     "Id": 5,
-    "content": "Working on a new machine learning model today. The intersection of AI and web development is fascinating. Anyone else exploring this space?",
-    "author": "David Kim",
-    "timestamp": "2024-01-19T11:00:00Z",
-    "likes": 27,
-    "comments": []
+    "content": "Coffee shop coding session ☕ There's something magical about the ambient noise and caffeine combination that makes me incredibly productive.",
+    "author": "Ryan Martinez",
+    "timestamp": "2024-01-15T06:15:00Z",
+    "likes": 19,
+    "imageUrl": "https://images.unsplash.com/photo-1545167622-3a6ac756afa4?w=600&h=400&fit=crop",
+    "comments": [
+      {
+        "Id": 6,
+        "content": "I totally agree! Which coffee shop do you recommend?",
+        "author": "Sophie Anderson",
+        "timestamp": "2024-01-15T07:00:00Z"
+      }
+    ]
   },
   {
     "Id": 6,
-    "content": "Reminder: Take breaks! Your best ideas often come when you step away from the screen. Just had a breakthrough during my walk. 🌳",
-    "author": "Lisa Wang",
-    "timestamp": "2024-01-18T15:30:00Z",
-    "likes": 45,
-    "comments": []
-  },
-  {
-    "Id": 7,
-    "content": "Excited to announce that our team just shipped a major feature! Months of hard work finally paying off. Grateful for this amazing team. 🎉",
-    "author": "James Wilson",
-    "timestamp": "2024-01-18T13:10:00Z",
-    "likes": 52,
+    "content": "Learning CSS Grid has been a game-changer for my layouts. Flexbox is great, but Grid gives you so much more control over complex designs.",
+    "author": "Maria Garcia",
+    "timestamp": "2024-01-15T05:45:00Z",
+    "likes": 24,
+    "imageUrl": null,
     "comments": []
   }
-]

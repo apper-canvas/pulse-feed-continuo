@@ -9,8 +9,9 @@ import Card from "@/components/atoms/Card";
 
 const CreatePostForm = ({ onPostCreated }) => {
   const [content, setContent] = useState("");
+  const [image, setImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-
   const MAX_LENGTH = 280;
 
   const handleSubmit = async (e) => {
@@ -28,24 +29,56 @@ const CreatePostForm = ({ onPostCreated }) => {
 
     setIsSubmitting(true);
 
-    try {
+try {
       await onPostCreated({
         content: content.trim(),
-        author: "Anonymous User" // In a real app, this would come from auth
+        author: "Anonymous User", // In a real app, this would come from auth
+        imageUrl: imagePreview
       });
-
-      setContent("");
+setContent("");
+      setImage(null);
+      setImagePreview(null);
       toast.success("Post created successfully!");
     } catch (error) {
       toast.error("Failed to create post. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
+};
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      // Validate file type
+      if (!file.type.startsWith('image/')) {
+        toast.error("Please select a valid image file");
+        return;
+      }
+      
+      // Validate file size (5MB limit)
+      if (file.size > 5 * 1024 * 1024) {
+        toast.error("Image size should be less than 5MB");
+        return;
+      }
+      
+      setImage(file);
+      
+      // Create preview
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setImagePreview(e.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleRemoveImage = () => {
+    setImage(null);
+    setImagePreview(null);
   };
 
   const remainingChars = MAX_LENGTH - content.length;
   const isOverLimit = remainingChars < 0;
-
   return (
     <motion.div
       initial={{ opacity: 0, y: -20 }}
@@ -84,9 +117,54 @@ const CreatePostForm = ({ onPostCreated }) => {
                   Post is too long
                 </span>
               )}
-            </div>
+</div>
           </div>
 
+          <div className="space-y-3">
+            <Label htmlFor="image">Add Image (Optional)</Label>
+            <div className="flex items-center space-x-3">
+              <input
+                id="image"
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+                className="hidden"
+              />
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => document.getElementById('image').click()}
+                className="flex items-center space-x-2"
+              >
+                <ApperIcon name="Image" size={16} />
+                <span>Choose Image</span>
+              </Button>
+              {image && (
+                <span className="text-sm text-gray-600">
+                  {image.name} ({(image.size / 1024 / 1024).toFixed(1)}MB)
+                </span>
+              )}
+            </div>
+            
+            {imagePreview && (
+              <div className="relative">
+                <img
+                  src={imagePreview}
+                  alt="Preview"
+                  className="w-full max-w-md rounded-lg border border-gray-200"
+                />
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  onClick={handleRemoveImage}
+                  className="absolute top-2 right-2 bg-black/50 text-white hover:bg-black/70"
+                >
+                  <ApperIcon name="X" size={16} />
+                </Button>
+              </div>
+            )}
+          </div>
           <div className="flex justify-end">
             <Button
               type="submit"

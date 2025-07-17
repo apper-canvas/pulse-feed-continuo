@@ -73,9 +73,21 @@ const PostCard = ({ post, onLike, onCreateComment, onUpdateComment, onDeleteComm
               <span className="text-gray-500 text-sm">·</span>
               <span className="text-gray-500 text-sm">{timeAgo}</span>
             </div>
-            <p className="text-gray-800 leading-relaxed mb-3">
+<p className="text-gray-800 leading-relaxed mb-3">
               {post.content}
             </p>
+            
+            {post.imageUrl && (
+              <div className="mb-3">
+                <img
+                  src={post.imageUrl}
+                  alt="Post image"
+                  className="w-full max-w-full rounded-lg border border-gray-200 object-cover"
+                  style={{ maxHeight: '400px' }}
+                />
+              </div>
+            )}
+            
             <div className="flex items-center space-x-4">
               <Button
                 variant="ghost"
