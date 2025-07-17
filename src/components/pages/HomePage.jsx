@@ -8,12 +8,8 @@ import { usePosts } from "@/hooks/usePosts";
 const HomePage = () => {
   const { posts, loading, error, createPost, updatePost, refetch } = usePosts();
 
-  const handlePostCreated = async (postData) => {
-    try {
-      await createPost(postData);
-    } catch (error) {
-      throw error;
-    }
+const handlePostCreated = (postData) => {
+    return createPost(postData);
   };
 
   const handleLike = async (postId) => {
