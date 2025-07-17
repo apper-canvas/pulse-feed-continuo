@@ -12,6 +12,7 @@ const {
     error, 
     createPost, 
     updatePost, 
+    deletePost,
     createComment, 
     updateComment, 
     deleteComment, 
@@ -51,6 +52,24 @@ const handleCreateComment = async (postId, commentData) => {
 const handleDeleteComment = async (postId, commentId) => {
     await deleteComment(postId, commentId);
     return true;
+};
+
+  const handleEditPost = async (postId, updateData) => {
+    try {
+      await updatePost(postId, updateData);
+      return true;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const handleDeletePost = async (postId) => {
+    try {
+      await deletePost(postId);
+      toast.success("Post deleted successfully!");
+    } catch (error) {
+      toast.error("Failed to delete post");
+    }
   };
 
   return (
@@ -66,7 +85,7 @@ const handleDeleteComment = async (postId, commentId) => {
         <CreatePostForm onPostCreated={handlePostCreated} />
         
         <div className="space-y-6">
-          <PostsFeed
+<PostsFeed
             posts={posts}
             loading={loading}
             error={error}
@@ -75,6 +94,8 @@ const handleDeleteComment = async (postId, commentId) => {
             onCreateComment={handleCreateComment}
             onUpdateComment={handleUpdateComment}
             onDeleteComment={handleDeleteComment}
+            onEdit={handleEditPost}
+            onDelete={handleDeletePost}
           />
         </div>
       </main>

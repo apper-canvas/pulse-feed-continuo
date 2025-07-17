@@ -116,7 +116,7 @@ export const usePosts = () => {
     loadPosts();
   }, []);
 
-  return {
+return {
     posts,
     loading,
     error,
