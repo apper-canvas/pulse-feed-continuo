@@ -44,7 +44,33 @@ async create(postData) {
     const index = posts.findIndex(p => p.Id === parseInt(id));
     if (index === -1) return false;
     
-    posts.splice(index, 1);
+posts.splice(index, 1);
     return true;
+  },
+
+  async search(searchTerm) {
+    await delay(300);
+    const query = searchTerm.toLowerCase().trim();
+    
+    if (!query) {
+      return [];
+    }
+    
+    const results = posts.filter(post => {
+      // Search in content
+      const contentMatch = post.content.toLowerCase().includes(query);
+      
+      // Search in hashtags (look for # prefixed words)
+      const hashtagMatch = query.startsWith('#') 
+        ? post.content.toLowerCase().includes(query)
+        : post.content.toLowerCase().includes(`#${query}`);
+      
+      // Search in author/username
+      const authorMatch = post.author.toLowerCase().includes(query);
+      
+      return contentMatch || hashtagMatch || authorMatch;
+    });
+    
+    return [...results].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
   }
 };

@@ -6,6 +6,9 @@ export const usePosts = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [searchLoading, setSearchLoading] = useState(false);
+  const [searchResults, setSearchResults] = useState([]);
+  const [searchError, setSearchError] = useState("");
 
   const loadPosts = async () => {
     setLoading(true);
@@ -17,6 +20,24 @@ export const usePosts = () => {
       setError("Failed to load posts. Please try again.");
     } finally {
       setLoading(false);
+    }
+  };
+
+  const searchPosts = async (searchTerm) => {
+    if (!searchTerm.trim()) {
+      setSearchResults([]);
+      return;
+    }
+
+    setSearchLoading(true);
+    setSearchError("");
+    try {
+      const data = await postsService.search(searchTerm);
+      setSearchResults(data);
+    } catch (err) {
+      setSearchError("Failed to search posts. Please try again.");
+    } finally {
+      setSearchLoading(false);
     }
   };
 
@@ -39,6 +60,12 @@ export const usePosts = () => {
       setPosts(prev => prev.map(post => 
         post.Id === parseInt(id) ? updatedPost : post
       ));
+      
+      // Update search results if they exist
+      setSearchResults(prev => prev.map(post => 
+        post.Id === parseInt(id) ? updatedPost : post
+      ));
+      
       return updatedPost;
     } catch (err) {
       setError("Failed to update post. Please try again.");
@@ -51,6 +78,9 @@ export const usePosts = () => {
     try {
       await postsService.delete(id);
       setPosts(prev => prev.filter(post => post.Id !== parseInt(id)));
+      
+      // Update search results if they exist
+      setSearchResults(prev => prev.filter(post => post.Id !== parseInt(id)));
     } catch (err) {
       setError("Failed to delete post. Please try again.");
       throw err;
@@ -61,11 +91,15 @@ export const usePosts = () => {
     setError("");
     try {
       const newComment = await commentsService.create(postId, commentData);
-      setPosts(prev => prev.map(post => 
+      
+      const updatePostComments = (post) => 
         post.Id === parseInt(postId) 
           ? { ...post, comments: [...(post.comments || []), newComment] }
-          : post
-      ));
+          : post;
+      
+      setPosts(prev => prev.map(updatePostComments));
+      setSearchResults(prev => prev.map(updatePostComments));
+      
       return newComment;
     } catch (err) {
       setError("Failed to create comment. Please try again.");
@@ -77,7 +111,8 @@ export const usePosts = () => {
     setError("");
     try {
       const updatedComment = await commentsService.update(postId, commentId, updateData);
-      setPosts(prev => prev.map(post => 
+      
+      const updatePostComments = (post) => 
         post.Id === parseInt(postId) 
           ? { 
               ...post, 
@@ -85,8 +120,11 @@ export const usePosts = () => {
                 comment.Id === parseInt(commentId) ? updatedComment : comment
               ) || []
             }
-          : post
-      ));
+          : post;
+      
+      setPosts(prev => prev.map(updatePostComments));
+      setSearchResults(prev => prev.map(updatePostComments));
+      
       return updatedComment;
     } catch (err) {
       setError("Failed to update comment. Please try again.");
@@ -98,14 +136,17 @@ export const usePosts = () => {
     setError("");
     try {
       await commentsService.delete(postId, commentId);
-      setPosts(prev => prev.map(post => 
+      
+      const updatePostComments = (post) => 
         post.Id === parseInt(postId) 
           ? { 
               ...post, 
               comments: post.comments?.filter(comment => comment.Id !== parseInt(commentId)) || []
             }
-          : post
-      ));
+          : post;
+      
+      setPosts(prev => prev.map(updatePostComments));
+      setSearchResults(prev => prev.map(updatePostComments));
     } catch (err) {
       setError("Failed to delete comment. Please try again.");
       throw err;
@@ -116,16 +157,20 @@ export const usePosts = () => {
     loadPosts();
   }, []);
 
-return {
+  return {
     posts,
     loading,
     error,
+    searchResults,
+    searchLoading,
+    searchError,
     createPost,
     updatePost,
     deletePost,
     createComment,
     updateComment,
     deleteComment,
+    searchPosts,
     refetch: loadPosts
   };
 };

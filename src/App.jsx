@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import HomePage from "@/components/pages/HomePage";
+import SearchResults from "@/components/pages/SearchResults";
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <div className="min-h-screen bg-background">
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/search" element={<SearchResults />} />
         </Routes>
         <ToastContainer
           position="top-right"
