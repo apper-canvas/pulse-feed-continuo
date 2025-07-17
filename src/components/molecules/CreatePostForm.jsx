@@ -117,34 +117,60 @@ setContent("");
                   Post is too long
                 </span>
               )}
-</div>
+<div className="flex items-center justify-between">
+            <div className="flex items-center space-x-2">
+              <span className={`text-sm ${isOverLimit ? 'text-red-500' : 'text-gray-500'}`}>
+                {remainingChars} characters remaining
+              </span>
+            </div>
+            <Button
+              type="submit"
+              disabled={!content.trim() || isOverLimit}
+              className="gradient-button text-white px-6 py-2 rounded-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              Post
+            </Button>
           </div>
+        </div>
 
-          <div className="space-y-3">
-            <Label htmlFor="image">Add Image (Optional)</Label>
-onChange={(e) => setContent(e.target.value)}
-                    className="w-full min-h-[120px] text-gray-800 leading-relaxed resize-none"
-                    placeholder="What's on your mind? Use #hashtags to categorize your post!"
-                  />
-                  <div className="flex items-center justify-between mt-2">
-                onChange={handleImageChange}
-                className="hidden"
-              />
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => document.getElementById('image').click()}
-                className="flex items-center space-x-2"
-              >
-                <ApperIcon name="Image" size={16} />
-                <span>Choose Image</span>
-              </Button>
-              {image && (
+        {/* Image Upload Section */}
+        <div className="space-y-3">
+          <Label htmlFor="image">Add Image (Optional)</Label>
+          <input
+            id="image"
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
+            className="hidden"
+          />
+          <div className="flex items-center justify-between">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => document.getElementById('image').click()}
+              className="flex items-center space-x-2"
+            >
+              <ApperIcon name="Image" size={16} />
+              <span>Choose Image</span>
+            </Button>
+            {image && (
+              <div className="flex items-center space-x-2">
                 <span className="text-sm text-gray-600">
                   {image.name} ({(image.size / 1024 / 1024).toFixed(1)}MB)
                 </span>
-              )}
-            </div>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={handleRemoveImage}
+                  className="text-red-500 hover:text-red-700"
+                >
+                  Remove
+                </Button>
+              </div>
+            )}
+          </div>
+        </div>
             
             {imagePreview && (
               <div className="relative">
