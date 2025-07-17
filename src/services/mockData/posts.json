@@ -37,9 +37,9 @@
       }
     ]
   },
-  {
+{
     "Id": 3,
-"content": "Hot take: TypeScript should be the default for all new React projects. The developer experience improvements are worth the initial learning curve.",
+    "content": "Hot take: TypeScript should be the default for all new React projects. The developer experience improvements are worth the initial learning curve.",
     "author": "Alex Rodriguez",
     "timestamp": "2024-01-15T08:20:00Z",
     "likes": 15,
@@ -93,3 +93,4 @@
     "imageUrl": null,
     "comments": []
   }
+]
