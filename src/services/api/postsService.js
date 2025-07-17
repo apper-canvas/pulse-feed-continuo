@@ -48,7 +48,7 @@ posts.splice(index, 1);
     return true;
   },
 
-  async search(searchTerm) {
+async search(searchTerm) {
     await delay(300);
     const query = searchTerm.toLowerCase().trim();
     
@@ -60,7 +60,7 @@ posts.splice(index, 1);
       // Search in content
       const contentMatch = post.content.toLowerCase().includes(query);
       
-      // Search in hashtags (look for # prefixed words)
+      // Enhanced hashtag matching
       const hashtagMatch = query.startsWith('#') 
         ? post.content.toLowerCase().includes(query)
         : post.content.toLowerCase().includes(`#${query}`);
@@ -69,6 +69,23 @@ posts.splice(index, 1);
       const authorMatch = post.author.toLowerCase().includes(query);
       
       return contentMatch || hashtagMatch || authorMatch;
+    });
+    
+    return [...results].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+  },
+
+  async getPostsByHashtag(hashtag) {
+    await delay(300);
+    const query = hashtag.toLowerCase().trim();
+    
+    if (!query) {
+      return [];
+    }
+    
+    const results = posts.filter(post => {
+      // Match hashtag with or without # prefix
+      const hashtagPattern = new RegExp(`#${query}\\b`, 'i');
+      return hashtagPattern.test(post.content);
     });
     
     return [...results].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));

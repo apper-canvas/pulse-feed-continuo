@@ -48,7 +48,7 @@ const PostsFeed = ({ posts, loading, error, onRetry, onLike, onCreateComment, on
       transition={{ duration: 0.3 }}
       className="space-y-4"
     >
-      {isSearchResults && searchTerm && (
+{isSearchResults && searchTerm && (
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -56,10 +56,11 @@ const PostsFeed = ({ posts, loading, error, onRetry, onLike, onCreateComment, on
           className="bg-white rounded-lg border border-gray-200 p-4 mb-6"
         >
           <div className="flex items-center space-x-2 text-gray-600">
-            <ApperIcon name="Search" size={16} />
+            <ApperIcon name={searchTerm.startsWith('#') ? "Hash" : "Search"} size={16} />
             <span className="text-sm">
-              Found {posts.length} result{posts.length !== 1 ? 's' : ''} for "
-              <span className="font-medium text-gray-900">{searchTerm}</span>"
+              Found {posts.length} result{posts.length !== 1 ? 's' : ''} 
+              {searchTerm.startsWith('#') ? ' tagged with ' : ' for '}
+              <span className="font-medium text-gray-900">{searchTerm}</span>
             </span>
           </div>
         </motion.div>

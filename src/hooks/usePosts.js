@@ -157,6 +157,24 @@ export const usePosts = () => {
     loadPosts();
   }, []);
 
+const getPostsByHashtag = async (hashtag) => {
+    if (!hashtag) {
+      setSearchResults([]);
+      return;
+    }
+
+    setSearchLoading(true);
+    setSearchError("");
+    try {
+      const data = await postsService.getPostsByHashtag(hashtag);
+      setSearchResults(data);
+    } catch (err) {
+      setSearchError("Failed to load hashtag posts. Please try again.");
+    } finally {
+      setSearchLoading(false);
+    }
+  };
+
   return {
     posts,
     loading,
@@ -171,6 +189,7 @@ export const usePosts = () => {
     updateComment,
     deleteComment,
     searchPosts,
+    getPostsByHashtag,
     refetch: loadPosts
   };
 };

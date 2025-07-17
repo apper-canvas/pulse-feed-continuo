@@ -122,11 +122,11 @@ setContent("");
 
           <div className="space-y-3">
             <Label htmlFor="image">Add Image (Optional)</Label>
-            <div className="flex items-center space-x-3">
-              <input
-                id="image"
-                type="file"
-                accept="image/*"
+onChange={(e) => setContent(e.target.value)}
+                    className="w-full min-h-[120px] text-gray-800 leading-relaxed resize-none"
+                    placeholder="What's on your mind? Use #hashtags to categorize your post!"
+                  />
+                  <div className="flex items-center justify-between mt-2">
                 onChange={handleImageChange}
                 className="hidden"
               />

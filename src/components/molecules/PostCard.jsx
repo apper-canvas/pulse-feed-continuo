@@ -7,9 +7,9 @@ import Card from "@/components/atoms/Card";
 import Button from "@/components/atoms/Button";
 import Input from "@/components/atoms/Input";
 import Textarea from "@/components/atoms/Textarea";
-
+import { parseHashtags, useHashtagNavigation } from "@/utils/hashtag";
 const PostCard = ({ post, onLike, onCreateComment, onUpdateComment, onDeleteComment, onEdit, onDelete }) => {
-const [showComments, setShowComments] = useState(false);
+  const [showComments, setShowComments] = useState(false);
   const [newComment, setNewComment] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
@@ -17,6 +17,7 @@ const [showComments, setShowComments] = useState(false);
   const [editContent, setEditContent] = useState(post.content);
   const [isSaving, setIsSaving] = useState(false);
   
+  const { navigateToHashtag } = useHashtagNavigation();
   const timeAgo = formatDistanceToNow(new Date(post.timestamp), { addSuffix: true });
   const commentCount = post.comments?.length || 0;
 
@@ -161,13 +162,12 @@ const [showComments, setShowComments] = useState(false);
                     {isSaving ? "Saving..." : "Save"}
                   </Button>
                 </div>
-              </div>
+</div>
             ) : (
               <p className="text-gray-800 leading-relaxed mb-3">
-                {post.content}
+                {parseHashtags(post.content, navigateToHashtag)}
               </p>
             )}
-            
             {post.imageUrl && (
               <div className="mb-3">
                 <img
@@ -231,9 +231,11 @@ const [showComments, setShowComments] = useState(false);
                         <span className="text-gray-400 text-xs">·</span>
                         <span className="text-gray-400 text-xs">
                           {formatDistanceToNow(new Date(comment.timestamp), { addSuffix: true })}
-                        </span>
+</span>
                       </div>
-                      <p className="text-gray-700 text-sm leading-relaxed">{comment.content}</p>
+                      <p className="text-gray-700 text-sm leading-relaxed">
+                        {parseHashtags(comment.content, navigateToHashtag)}
+                      </p>
                     </div>
                     <Button
                       variant="ghost"
