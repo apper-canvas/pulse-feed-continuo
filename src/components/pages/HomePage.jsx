@@ -54,15 +54,10 @@ const handleDeleteComment = async (postId, commentId) => {
     return true;
 };
 
-  const handleEditPost = async (postId, updateData) => {
-    try {
-      await updatePost(postId, updateData);
-      return true;
-    } catch (error) {
-      throw error;
-    }
+const handleEditPost = async (postId, updateData) => {
+    await updatePost(postId, updateData);
+    return true;
   };
-
   const handleDeletePost = async (postId) => {
     try {
       await deletePost(postId);
