@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import ApperIcon from "@/components/ApperIcon";
-import { Input } from "@/components/atoms/Input";
+import Input from "@/components/atoms/Input";
 
 const Header = () => {
   const [searchTerm, setSearchTerm] = useState("");
