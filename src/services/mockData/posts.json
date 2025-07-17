@@ -1,0 +1,37 @@
+[
+  {
+    "Id": 1,
+    "content": "Just launched my new side project! Excited to share it with the world. It's been months of hard work but totally worth it. 🚀",
+    "author": "Sarah Chen",
+    "timestamp": "2024-01-15T10:30:00Z",
+    "likes": 12
+  },
+  {
+    "Id": 2,
+    "content": "Beautiful sunset today! Sometimes you just need to pause and appreciate the simple things in life. Nature never fails to inspire me.",
+    "author": "Mike Rodriguez",
+    "timestamp": "2024-01-15T09:15:00Z",
+    "likes": 8
+  },
+  {
+    "Id": 3,
+    "content": "Anyone else obsessed with the new coffee shop downtown? Their matcha lattes are incredible and the vibe is perfect for working remotely.",
+    "author": "Emma Thompson",
+    "timestamp": "2024-01-15T08:45:00Z",
+    "likes": 15
+  },
+  {
+    "Id": 4,
+    "content": "Pro tip: Always backup your work before making major changes. Just learned this the hard way but thankfully recovered everything! 😅",
+    "author": "Alex Johnson",
+    "timestamp": "2024-01-15T07:20:00Z",
+    "likes": 23
+  },
+  {
+    "Id": 5,
+    "content": "Weekend plans: hiking, reading, and trying out that new recipe I bookmarked. Sometimes the best weekends are the simple ones.",
+    "author": "Jessica Kim",
+    "timestamp": "2024-01-14T18:30:00Z",
+    "likes": 6
+  }
+]
