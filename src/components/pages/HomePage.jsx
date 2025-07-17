@@ -34,13 +34,9 @@ const {
     }
   };
 
-  const handleCreateComment = async (postId, commentData) => {
-    try {
-      await createComment(postId, commentData);
-      return true;
-    } catch (error) {
-      throw error;
-    }
+const handleCreateComment = async (postId, commentData) => {
+    await createComment(postId, commentData);
+    return true;
   };
 
   const handleUpdateComment = async (postId, commentId, updateData) => {
@@ -52,13 +48,9 @@ const {
     }
   };
 
-  const handleDeleteComment = async (postId, commentId) => {
-    try {
-      await deleteComment(postId, commentId);
-      return true;
-    } catch (error) {
-      throw error;
-    }
+const handleDeleteComment = async (postId, commentId) => {
+    await deleteComment(postId, commentId);
+    return true;
   };
 
   return (
