@@ -16,13 +16,14 @@ export const postsService = {
     return post ? { ...post } : null;
   },
 
-  async create(postData) {
+async create(postData) {
     await delay(400);
     const newPost = {
       Id: Math.max(...posts.map(p => p.Id)) + 1,
       ...postData,
       timestamp: new Date().toISOString(),
-      likes: 0
+      likes: 0,
+      comments: []
     };
     posts.unshift(newPost);
     return { ...newPost };

@@ -6,9 +6,19 @@ import PostsFeed from "@/components/organisms/PostsFeed";
 import { usePosts } from "@/hooks/usePosts";
 
 const HomePage = () => {
-  const { posts, loading, error, createPost, updatePost, refetch } = usePosts();
+const { 
+    posts, 
+    loading, 
+    error, 
+    createPost, 
+    updatePost, 
+    createComment, 
+    updateComment, 
+    deleteComment, 
+    refetch 
+  } = usePosts();
 
-const handlePostCreated = (postData) => {
+  const handlePostCreated = (postData) => {
     return createPost(postData);
   };
 
@@ -21,6 +31,33 @@ const handlePostCreated = (postData) => {
       }
     } catch (error) {
       toast.error("Failed to like post");
+    }
+  };
+
+  const handleCreateComment = async (postId, commentData) => {
+    try {
+      await createComment(postId, commentData);
+      return true;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const handleUpdateComment = async (postId, commentId, updateData) => {
+    try {
+      await updateComment(postId, commentId, updateData);
+      toast.success("Comment updated!");
+    } catch (error) {
+      toast.error("Failed to update comment");
+    }
+  };
+
+  const handleDeleteComment = async (postId, commentId) => {
+    try {
+      await deleteComment(postId, commentId);
+      return true;
+    } catch (error) {
+      throw error;
     }
   };
 
@@ -43,6 +80,9 @@ const handlePostCreated = (postData) => {
             error={error}
             onRetry={refetch}
             onLike={handleLike}
+            onCreateComment={handleCreateComment}
+            onUpdateComment={handleUpdateComment}
+            onDeleteComment={handleDeleteComment}
           />
         </div>
       </main>

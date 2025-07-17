@@ -55,9 +55,22 @@
 }
 
 .Toastify__progress-bar {
-  @apply !bg-primary;
+@apply !bg-primary;
 }
 
 .Toastify__close-button {
   @apply !text-gray-400 hover:!text-gray-600;
+}
+
+/* Comment Section Styles */
+.comment-item {
+  @apply bg-gray-50 rounded-lg p-3 transition-all duration-200 hover:bg-gray-100;
+}
+
+.comment-form {
+  @apply bg-gray-50 rounded-lg p-3 border border-gray-200;
+}
+
+.comment-form input {
+  @apply bg-white border-gray-300 focus:border-primary focus:ring-primary;
 }

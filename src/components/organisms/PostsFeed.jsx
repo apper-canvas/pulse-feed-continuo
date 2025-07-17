@@ -4,7 +4,7 @@ import Loading from "@/components/ui/Loading";
 import Error from "@/components/ui/Error";
 import Empty from "@/components/ui/Empty";
 
-const PostsFeed = ({ posts, loading, error, onRetry, onLike }) => {
+const PostsFeed = ({ posts, loading, error, onRetry, onLike, onCreateComment, onUpdateComment, onDeleteComment }) => {
   if (loading) {
     return <Loading />;
   }
@@ -34,6 +34,9 @@ const PostsFeed = ({ posts, loading, error, onRetry, onLike }) => {
           <PostCard 
             post={post} 
             onLike={onLike}
+            onCreateComment={onCreateComment}
+            onUpdateComment={onUpdateComment}
+            onDeleteComment={onDeleteComment}
           />
         </motion.div>
       ))}
